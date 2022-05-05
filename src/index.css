@@ -1,0 +1,50 @@
+:root{
+  --dark-grey:#303030;
+  --grey:#707070;
+  --light-grey:#9C9C9C;
+  --lightest-grey:#D1D1D1;
+  --lightest-grey1:#F6F6F6;
+  --dark-red:#C60E2E;
+  --red:#E4163A;
+  --light-red:#FF5761;
+  --lightestRed:#FF768E;
+  --light-blue: #F5FBFF;
+  --blue:#344472;
+  --white:#FFFFFF;
+
+  --fs-spsm:12px;
+  --fs-sm:14px;
+  --fs-md:18px;
+  --fs-bd:24px;
+  --fs-title:36px;
+
+  --lh-sm:24px;
+  --lh-md:25px;
+  --lh-bd:33px;
+  --lh-title:49px;
+  
+  --fw-normal:400;
+  --fw-medium:500;
+  --fw-bold:800;
+
+}
+
+html{
+  /* overflow-y: scroll; */
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: local('Avenir-Medium'), url(assets/fonts/Avenir-Medium.ttf) format('truetype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: local('Avenir-Book'), url(assets/fonts/Avenir-Book.ttf) format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Avenir';
+  src: local('Avenir-Black'), url(assets/fonts/Avenir-Black.ttf) format('truetype');
+  font-weight: 800;
+}
