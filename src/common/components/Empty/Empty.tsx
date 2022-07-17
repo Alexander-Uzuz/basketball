@@ -18,11 +18,6 @@ export const Empty: FC<Props> = ({ src, name }) => {
   );
 };
 
-// const EmptyGrid = styled.div`
-//     display:grid;
-//     grid-template-columns: 1fr 1fr 1fr 1fr;
-//     grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr;
-// `
 
 const EmptyWrapper = styled.div`
   height:100vh;

@@ -1,10 +1,8 @@
-import React,{FC, useState} from 'react';
+import {FC} from 'react';
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import Profile from 'assets/icons/profileDesc.svg';
 import Logo from 'assets/icons/logoBasket.svg'
-
-import { useAppSelector } from 'core/redux/store/hooks';
-import { RootState } from 'core/redux/store/store';
 import Burger from 'assets/icons/menu.svg';
 
 
@@ -19,7 +17,7 @@ export const Header:FC<Props> = ({handleBurger, name}) =>{
         <StyledHeader>
             <HeaderBurger onClick={handleBurger} src={Burger}/>
             <HeaderContainer>
-                <HeaderLogo src={Logo}/>
+                <Link to="/cardTeams"><HeaderLogo src={Logo}/></Link>
                 <HeaderUser>{name}</HeaderUser>
             </HeaderContainer>
         </StyledHeader>

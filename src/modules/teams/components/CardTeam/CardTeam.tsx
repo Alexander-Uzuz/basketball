@@ -8,6 +8,8 @@ type Props = {
 }
 
 export const CardTeam:FC<Props> = ({team}) => {
+
+
   return (
     <CardWrapper to={`/cardTeams/${team.id}`}>
         <CardTop>

@@ -1,7 +1,7 @@
 export interface IStateUser{
     user:IStateUserData,
     error:string | null;
-    status:string | null;
+    loading:boolean;
 }
 
 export interface IStateUserData{

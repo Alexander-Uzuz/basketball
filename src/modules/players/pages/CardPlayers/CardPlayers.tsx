@@ -1,9 +1,10 @@
-import React, {
+import  {
   BaseSyntheticEvent,
   FC,
   useState,
   useMemo,
   useEffect,
+  memo,
 } from "react";
 import styled from "styled-components";
 import {
@@ -13,7 +14,6 @@ import {
   Paginate,
   Select,
   Empty,
-  Loading,
 } from "common/components";
 import {
   getSelectTeams,
@@ -36,21 +36,19 @@ type Props = {
   teamsOptions:ITeam[];
 };
 
-export const CardPlayers: FC<Props> = ({ teams, teamsOptions }) => {
+const CardPlayersInner: FC<Props> = ({ teams, teamsOptions }) => {
   const token = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user") || "{}")
     : null;
   const { count, loading, status } = useAppSelector(
     (state: RootState) => state.players
   );
-
   const players = useAppSelector(playersSelectors.selectAll);
   const dispatch = useAppDispatch();
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(6);
   const [teamsSearch, setTeamsSearch] = useState("");
-
 
   useEffect(() =>{
     if(token){
@@ -126,6 +124,8 @@ export const CardPlayers: FC<Props> = ({ teams, teamsOptions }) => {
     </>
   );
 };
+
+export const CardPlayers = memo(CardPlayersInner);
 
 const CardPlayerWrapper = styled.div`
   margin: 32px 80px;

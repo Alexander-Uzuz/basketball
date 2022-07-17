@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {IAddTeamObject} from 'api/teams/ITeamsRequest'
 import { getTeams, addTeam,deleteTeam, changeTeam,IChangeTeam,getTeam } from "api/teams/teamsRequest";
-import {addTeamReducer, removeTeamReducer, changeTeamReducer} from './TeamReducer';
+import {addTeamReducer, removeTeamReducer, changeTeamReducer} from './TeamSlice';
 import { IGetTeam } from "api/teams/teamsRequest";
 
 

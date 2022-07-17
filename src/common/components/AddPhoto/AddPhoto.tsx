@@ -3,8 +3,6 @@ import AddIcon from 'assets/icons/addPhoto.svg';
 import styled from 'styled-components';
 
 type Props = {
-  // register:any;
-  // name:any;
   errorMessage:any;
   onChange:any;
   value?:string;

@@ -24,7 +24,6 @@ export const AddTeam: FC<Props> = ({teams}) => {
   const {status} = useAppSelector((state:RootState) => state.teams);
   const {id} = useParams();
   const currentTeam = id ? teams.find(team => team.id === Number(id)) : undefined;
-
   const token = useAppSelector((state:RootState) => state.user.user.token);
   const { register,handleSubmit,formState: { errors } } = useForm<ITeam>({
     mode:'onBlur',
@@ -92,7 +91,7 @@ export const AddTeam: FC<Props> = ({teams}) => {
     })();
   }
 
-  const onSubmit = async (data:ITeam) =>{
+  const onSubmit = (data:ITeam) =>{
     const MySwal = withReactContent(Swal)
       const team = {
         team:{

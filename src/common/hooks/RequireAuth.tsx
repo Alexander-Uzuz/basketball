@@ -1,18 +1,17 @@
-import React,{FC} from 'react';
-import {useLocation, Navigate} from 'react-router-dom';
-
-type Props = {
-    children:JSX.Element
-}
-
-export const RequireAuth:FC<Props> = ({children}) => {
-    const location = useLocation();
-    const token = localStorage.getItem('user')? JSON.parse(localStorage.getItem('user') || '{}') : null;
+import { useAppSelector } from 'core/redux/store/hooks';
+import React from 'react';
+import {Outlet, Navigate} from 'react-router-dom';
 
 
-    if(!token){
-        return <Navigate to='/SignIn' state={{from:location}}/>
+type Props = {}
+
+export const RequireAuth = (props: Props) => {
+    const {token} = useAppSelector((state => state.user.user))
+    
+
+    if(token){
+        return <Outlet/>
+    }else{
+        return <Navigate to='/signIn'/>
     }
-
-    return children;
 }

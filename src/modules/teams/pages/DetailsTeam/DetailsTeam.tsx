@@ -1,7 +1,6 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import styled from "styled-components";
-import { HeaderSection, AboutTeam, Loading } from "common/components";
-import { ITeam } from "api/teams/ITeamsRequest";
+import { HeaderSection, AboutTeam } from "common/components";
 import { IPlayer } from "api/players/IPlayersRequest";
 import { useParams } from "react-router-dom";
 import { Roster } from "./Roster";

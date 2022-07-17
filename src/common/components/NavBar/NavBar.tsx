@@ -7,7 +7,7 @@ import { ReactComponent as Person } from "assets/icons/person.svg";
 import { ReactComponent as GroupPerson } from "assets/icons/group_person.svg";
 import { ReactComponent as LogOut } from "assets/icons/logOut.svg";
 import { useAppDispatch } from "core/redux/store/hooks";
-import { removeUser } from "modules/authorization/authorizationSlice";
+import { removeUser } from "modules/auth/authSlice";
 import ProfileMobile from "assets/icons/ProfileMobile.svg";
 
 interface Props {

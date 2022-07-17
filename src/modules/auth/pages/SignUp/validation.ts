@@ -5,7 +5,6 @@ interface ISchemaRegistration{
     login:string,
     password:string,
     passwordConfirm:string,
-    // accept?:boolean | null | undefined
 }
 
 export const schemaRegistration:Yup.SchemaOf<ISchemaRegistration> = Yup.object().shape({
@@ -15,5 +14,4 @@ export const schemaRegistration:Yup.SchemaOf<ISchemaRegistration> = Yup.object()
         .min(3, 'password must be at least 3 characters long'),
     passwordConfirm: Yup.string().required('invalid password repetition')
         .oneOf([Yup.ref('password')], 'Passwords must and should match'),
-    // accept:Yup.boolean().oneOf([true],'Message'),
 });

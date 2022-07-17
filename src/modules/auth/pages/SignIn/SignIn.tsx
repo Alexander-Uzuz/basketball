@@ -1,24 +1,23 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "core/redux/store/hooks";
-import { fetchUser } from "../../SignInThunk";
+import { fetchUser } from "../../authThunk";
 import { RootState } from "core/redux/store/store";
 import styled from "styled-components";
 import Background from 'assets/icons/BackgroundSignIn.svg';
-
-
 import { Input, Button, Link, Notification } from "common/components";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaSignIn, ISignIn } from "./validation";
+import { Spinner } from "common/components/Spinner/Spinner";
 
 
 type Props = {};
 
-export const SignIn: FC<Props> = (props: Props) => {
+export const SignIn: FC<Props> = (props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {user,error} = useAppSelector((state:RootState) => state.user);
+  const {user,error, loading} = useAppSelector((state:RootState) => state.user);
   const {
     register,
     handleSubmit,
@@ -28,7 +27,6 @@ export const SignIn: FC<Props> = (props: Props) => {
     resolver: yupResolver(schemaSignIn),
   });
 
-
   useEffect(() => {
     if(user.token){
      localStorage.setItem('user',JSON.stringify(user))
@@ -36,48 +34,52 @@ export const SignIn: FC<Props> = (props: Props) => {
     }
   },[user.token])
 
-
-  const onSubmit = async (data: ISignIn) => {
-    dispatch(fetchUser(data))
-  };
+  const onSubmit = (data: ISignIn) => dispatch(fetchUser(data))
+  
 
   return (
-    <SignInWrapper>
+    <>
       {
-        error ? <Notification errorText={error}/> : ''
+        !loading ? 
+        <SignInWrapper>
+        {
+          error ? <Notification errorText={error}/> : ''
+        }
+        <SignInContainer>
+          <SignInLeftContainer>
+            <SignInLeftContent>
+              <SignInTitle>Sign In</SignInTitle>
+              <SignInForm onSubmit={handleSubmit(onSubmit)}>
+                <Input
+                  id="ILogin"
+                  label="Login"
+                  register={register}
+                  name="login"
+                  errorMessage={errors.login?.message}
+                />
+                <Input
+                  type="password"
+                  id="IPassword"
+                  label="Password"
+                  register={register}
+                  name="password"
+                  closeEye
+                  errorMessage={errors.password?.message}
+                />
+                <Button type="submit" text="Sign In" margin="0px 0px 24px 0px" width="100%"/>
+              </SignInForm>
+              <StyledMember>
+                <StyledMemberText>Not a member yet?</StyledMemberText>
+                <Link to="/signUp" text="Sign up" />
+              </StyledMember>
+            </SignInLeftContent>
+          </SignInLeftContainer>
+          <SignInRightContainer></SignInRightContainer>
+        </SignInContainer>
+      </SignInWrapper>
+        : <Spinner/>
       }
-      <SignInContainer>
-        <SignInLeftContainer>
-          <SignInLeftContent>
-            <SignInTitle>Sign In</SignInTitle>
-            <SignInForm onSubmit={handleSubmit(onSubmit)}>
-              <Input
-                id="ILogin"
-                label="Login"
-                register={register}
-                name="login"
-                errorMessage={errors.login?.message}
-              />
-              <Input
-                type="password"
-                id="IPassword"
-                label="Password"
-                register={register}
-                name="password"
-                closeEye
-                errorMessage={errors.password?.message}
-              />
-              <Button type="submit" text="Sign In" margin="0px 0px 24px 0px" width="100%"/>
-            </SignInForm>
-            <StyledMember>
-              <StyledMemberText>Not a member yet?</StyledMemberText>
-              <Link to="/signUp" text="Sign up" />
-            </StyledMember>
-          </SignInLeftContent>
-        </SignInLeftContainer>
-        <SignInRightContainer></SignInRightContainer>
-      </SignInContainer>
-    </SignInWrapper>
+    </>
   );
 };
 
@@ -85,8 +87,7 @@ export const SignIn: FC<Props> = (props: Props) => {
 
 
 
-export const SignInWrapper = styled.div`
-`;
+export const SignInWrapper = styled.div``;
 
 export const SignInContainer = styled.div`
   width:100%;

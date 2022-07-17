@@ -5,6 +5,7 @@ import React, {
   BaseSyntheticEvent,
   useMemo,
   useCallback,
+  memo,
 } from "react";
 import styled from "styled-components";
 import {
@@ -28,7 +29,7 @@ type Props = {
   teams: ITeam[];
 };
 
-export const CardTeams: FC<Props> = ({ teams }: Props) => {
+const CardTeamsInner: FC<Props> = ({ teams }) => {
   const token = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user") || "{}")
     : null;
@@ -53,11 +54,13 @@ export const CardTeams: FC<Props> = ({ teams }: Props) => {
     [count, pageSize]
   );
 
+
+
   useEffect(() => {
     const obj = { token: token.token, searchValue, currentPage, pageSize };
 
     dispatch(fetchTeams(obj));
-  }, [searchValue, currentPage, pageSize]);
+  }, [searchValue,currentPage,pageSize]);
 
   return (
     <>
@@ -99,6 +102,8 @@ export const CardTeams: FC<Props> = ({ teams }: Props) => {
     </>
   );
 };
+
+export const CardTeams = memo(CardTeamsInner);
 
 const CardTeamsWrapper = styled.div`
   margin: 32px 80px;

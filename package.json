@@ -60,5 +60,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/Alexander-Uzuz/basketball.git",
+  "author": "Alexander <uzuz98@mail.ru>",
+  "license": "MIT"
 }

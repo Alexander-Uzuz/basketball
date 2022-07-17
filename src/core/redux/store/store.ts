@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
-import userReducer from 'modules/authorization/authorizationSlice';
+import userReducer from 'modules/auth/authSlice';
 import { rootReducer } from './rootReducer';
 
 const preloadedUserState = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') || '') : {name:null,avatarUrl:null,token:null};
@@ -12,7 +12,7 @@ const preloadedState = {
             token:preloadedUserState.token,
         },
         error:null,
-        status:null,
+        loading:false,
     },
 }
 

@@ -9,6 +9,7 @@ interface Props{
 }
 
 export const AboutTeam:FC<Props> = ({team}) => {
+
   return (
       <AboutTeamWrapper>
       <AboutTeamContainer>
